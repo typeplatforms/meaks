@@ -113,6 +113,7 @@ header.site-header{
   object-fit: contain;
   flex: none;
 }
+.brand{ text-decoration:none; }
 .brand:hover{ text-decoration:none; opacity:1; }
 .brand .sub{ color: var(--text-muted); font-weight:500; font-size:.7em; letter-spacing:.1em; text-transform:uppercase; }
 
@@ -129,10 +130,6 @@ nav.links a{
 }
 nav.links a:hover{ color: var(--text); text-decoration:none; opacity:1; }
 nav.links a.active{ color: var(--text); }
-nav.links a.active::after{
-  content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
-  background: var(--text);
-}
 .nav-actions{ display:flex; gap:10px; }
 .nav-actions .btn{ padding: .55em 1em; font-size:.85rem; }
 
@@ -215,9 +212,8 @@ section.alt{ background: var(--bg-alt); border-top:1px solid var(--border); bord
 .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
 /* feature / info grid */
-.grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .grid-2{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-@media (max-width: 780px){ .grid-3{ grid-template-columns:1fr; } .grid-2{ grid-template-columns:1fr; } }
+@media (max-width: 780px){ .grid-2{ grid-template-columns:1fr; } }
 
 .card{
   background: var(--surface);
@@ -311,9 +307,7 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
         moment it drops, and jump into the community shaping the game with us.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="game.html">Explore the Game</a>
         <a class="btn btn-magenta" data-discord-link href="#" target="_blank" rel="noopener">Join the Discord</a>
-        <a class="btn btn-ghost" href="updates.html">Latest Updates</a>
       </div>
     </div>
     <div class="visor">
@@ -350,7 +344,7 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
 </section>
 
 <section>
-  <div class="wrap grid-3">
+  <div class="wrap grid-2">
     <div class="card">
       <div class="icon">01</div>
       <h3>Watch</h3>
@@ -363,12 +357,6 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
       <p class="muted">Chat with the team, share feedback, and get early access to test builds.</p>
       <a class="btn btn-ghost" style="margin-top:14px;" data-discord-link href="#" target="_blank" rel="noopener">Join Discord</a>
     </div>
-    <div class="card">
-      <div class="icon">03</div>
-      <h3>Watch devlogs</h3>
-      <p class="muted">Every devlog and behind-the-scenes video is posted straight to the channel.</p>
-      <a class="btn btn-ghost" style="margin-top:14px;" data-youtube-link href="#" target="_blank" rel="noopener">Watch on YouTube</a>
-    </div>
   </div>
 </section>
 
@@ -378,8 +366,7 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
       <div>
         <h4>Site</h4>
         <a href="index.html">Home</a>
-        <a href="game.html">The Game</a>
-      </div>
+        </div>
       <div>
         <h4>Follow</h4>
         <a data-youtube-link href="#" target="_blank" rel="noopener">YouTube — @mekogamesVR</a>
