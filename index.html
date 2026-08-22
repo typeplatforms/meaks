@@ -17,17 +17,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
-  --bg:        #0a0a14;
-  --bg-alt:    #101020;
-  --surface:   #16162a;
-  --surface-2: #1c1c34;
-  --border:    #2a2a46;
-  --text:      #e9e7f6;
-  --text-muted:#9491b8;
-  --cyan:      #5ff2ff;
-  --magenta:   #ff4d94;
-  --cyan-glow: rgba(95,242,255,.35);
-  --magenta-glow: rgba(255,77,148,.30);
+  --bg:        #0c0c0c;
+  --bg-alt:    #131313;
+  --surface:   #1a1a1a;
+  --surface-2: #212121;
+  --border:    #2c2c2c;
+  --text:      #f2f2f2;
+  --text-muted:#9a9a9a;
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -46,21 +42,8 @@ body{
   -webkit-font-smoothing: antialiased;
 }
 
-/* faint scanline / grid atmosphere behind everything */
-body::before{
-  content:"";
-  position: fixed; inset:0;
-  pointer-events:none;
-  z-index:0;
-  background:
-    radial-gradient(ellipse 60% 40% at 15% -5%, var(--cyan-glow), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 100% 10%, var(--magenta-glow), transparent 60%),
-    repeating-linear-gradient(180deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 3px);
-  opacity:.8;
-}
-
-a{ color: var(--cyan); text-decoration:none; }
-a:hover{ text-decoration: underline; }
+a{ color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+a:hover{ opacity:.8; }
 img{ max-width:100%; display:block; }
 
 h1,h2,h3,h4{
@@ -77,7 +60,7 @@ h1,h2,h3,h4{
   text-transform: uppercase;
   letter-spacing: .18em;
   font-size: .75rem;
-  color: var(--cyan);
+  color: var(--text-muted);
 }
 .muted{ color: var(--text-muted); }
 
@@ -88,32 +71,29 @@ h1,h2,h3,h4{
   font-weight:600;
   padding: .8em 1.4em;
   border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #000000;
   cursor:pointer;
-  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  transition: transform .15s ease, opacity .15s ease;
   text-decoration:none;
 }
-.btn:hover{ transform: translateY(-2px); text-decoration:none; }
-.btn-primary{
-  background: linear-gradient(135deg, var(--cyan), #35b9d9);
-  color: #041016;
-  border-color: transparent;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
+.btn:hover{ transform: translateY(-2px); opacity:.85; text-decoration:none; }
+.btn-primary,
+.btn-magenta,
+.btn-ghost{
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
 }
-.btn-primary:hover{ box-shadow: 0 8px 24px -6px var(--cyan-glow); }
-.btn-magenta{
-  background: linear-gradient(135deg, var(--magenta), #b52b63);
-  color:#1a0410; border-color:transparent;
-}
-.btn-magenta:hover{ box-shadow: 0 8px 24px -6px var(--magenta-glow); }
-.btn-ghost:hover{ border-color: var(--cyan); }
+.btn-primary:hover,
+.btn-magenta:hover,
+.btn-ghost:hover{ box-shadow:none; }
 
 /* ---------- Header / Nav ---------- */
 header.site-header{
   position: sticky; top:0; z-index:50;
-  background: rgba(10,10,20,.75);
+  background: rgba(12,12,12,.82);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -132,9 +112,8 @@ header.site-header{
   width: 32px; height:32px;
   object-fit: contain;
   flex: none;
-  filter: drop-shadow(0 0 8px var(--cyan-glow));
 }
-.brand:hover{ text-decoration:none; }
+.brand:hover{ text-decoration:none; opacity:1; }
 .brand .sub{ color: var(--text-muted); font-weight:500; font-size:.7em; letter-spacing:.1em; text-transform:uppercase; }
 
 nav.links{ display:flex; align-items:center; gap: 28px; }
@@ -146,12 +125,13 @@ nav.links a{
   letter-spacing:.02em;
   position:relative;
   padding-bottom:4px;
+  text-decoration:none;
 }
-nav.links a:hover{ color: var(--text); text-decoration:none; }
-nav.links a.active{ color: var(--cyan); }
+nav.links a:hover{ color: var(--text); text-decoration:none; opacity:1; }
+nav.links a.active{ color: var(--text); }
 nav.links a.active::after{
   content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
-  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  background: var(--text);
 }
 .nav-actions{ display:flex; gap:10px; }
 .nav-actions .btn{ padding: .55em 1em; font-size:.85rem; }
@@ -189,10 +169,7 @@ nav.links a.active::after{
   font-size: clamp(2.4rem, 5vw, 4rem);
   margin-bottom:.3em;
 }
-.hero h1 .accent{
-  background: linear-gradient(135deg, var(--cyan), var(--magenta));
-  -webkit-background-clip: text; background-clip:text; color:transparent;
-}
+.hero h1 .accent{ color: var(--text); }
 .hero p.lead{ font-size: 1.15rem; color: var(--text-muted); max-width: 46ch; }
 .hero .cta-row{ display:flex; gap:14px; margin-top: 28px; flex-wrap:wrap; }
 
@@ -200,32 +177,12 @@ nav.links a.active::after{
   aspect-ratio: 4/3;
   border-radius: 20px;
   border: 1px solid var(--border);
-  background:
-    radial-gradient(circle at 30% 20%, var(--cyan-glow), transparent 55%),
-    radial-gradient(circle at 80% 80%, var(--magenta-glow), transparent 55%),
-    var(--surface);
+  background: var(--surface);
   position:relative;
   display:flex; align-items:center; justify-content:center;
 }
-.visor::before{
-  content:"MEAKS";
-  font-family: var(--font-display);
-  font-weight:700;
-  font-size: clamp(2rem, 6vw, 3.2rem);
-  letter-spacing:.05em;
-  color: rgba(233,231,246,.06);
-  position:absolute;
-}
-.visor .ring{
-  position:absolute; inset: 14%;
-  border: 2px solid var(--cyan);
-  border-radius: 50%;
-  opacity:.5;
-  box-shadow: 0 0 40px var(--cyan-glow) inset;
-}
-.visor .ring.r2{ inset: 24%; border-color: var(--magenta); opacity:.4; animation: spin 14s linear infinite; }
-@keyframes spin{ to{ transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce){ .visor .ring.r2{ animation:none; } }
+.visor::before{ content:none; }
+.visor .ring{ display:none; }
 .visor .mascot{
   position:relative; z-index:1;
   width: 46%;
@@ -271,13 +228,14 @@ section.alt{ background: var(--bg-alt); border-top:1px solid var(--border); bord
 .card h3{ font-size:1.1rem; }
 .card .icon{
   width:40px; height:40px; border-radius:8px;
-  background: linear-gradient(135deg, var(--cyan-glow), var(--magenta-glow));
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   margin-bottom:16px;
   display:flex; align-items:center; justify-content:center;
-  font-family: var(--font-display); font-weight:700; color: var(--cyan);
+  font-family: var(--font-display); font-weight:700; color: var(--text);
 }
 
-/* ---------- Updates & Blog list items (rendered by JS) ---------- */
+/* ---------- Entry cards (kept for possible future use) ---------- */
 .entry-list{ display:flex; flex-direction:column; gap: 18px; }
 .entry{
   background: var(--surface);
@@ -291,7 +249,7 @@ section.alt{ background: var(--bg-alt); border-top:1px solid var(--border); bord
   font-family: var(--font-display); font-size:.7rem; font-weight:700;
   text-transform:uppercase; letter-spacing:.08em;
   padding: 3px 10px; border-radius: 999px;
-  border: 1px solid var(--cyan); color: var(--cyan);
+  border: 1px solid var(--border); color: var(--text-muted);
 }
 .entry .date{ color: var(--text-muted); font-size:.85rem; }
 .entry h3{ font-size:1.3rem; margin-bottom:.35em; }
@@ -317,7 +275,8 @@ footer.site-footer{
 footer .wrap{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
 footer .cols{ display:flex; gap:64px; flex-wrap:wrap; }
 footer h4{ font-size:.85rem; text-transform:uppercase; letter-spacing:.1em; color: var(--text-muted); margin-bottom:14px; }
-footer a{ color: var(--text); display:block; margin-bottom:8px; font-size:.95rem; }
+footer a{ color: var(--text); display:block; margin-bottom:8px; font-size:.95rem; text-decoration:none; }
+footer a:hover{ opacity:.8; }
 footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px; }
 
 .discord-badge{
@@ -338,8 +297,6 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
     <nav class="links">
       <a href="index.html" class="active">Home</a>
       <a href="game.html">The Game</a>
-      <a href="updates.html">Updates</a>
-      <a href="blog.html">Blog</a>
       <div class="nav-actions mobile">
         <a class="btn btn-ghost" data-discord-link href="#" target="_blank" rel="noopener">Discord</a>
         <a class="btn btn-primary" data-youtube-link href="#" target="_blank" rel="noopener">YouTube</a>
@@ -381,13 +338,14 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
     <div class="section-head">
       <div>
         <p class="eyebrow">Always current</p>
-        <h2>Latest video</h2>
+        <h2>Devlogs &amp; recent videos</h2>
       </div>
       <a class="btn btn-ghost" data-youtube-link href="#" target="_blank" rel="noopener">Visit the channel →</a>
     </div>
     <p class="muted" style="margin-top:-20px; margin-bottom:24px; max-width:60ch;">
-      This player is wired to the Meko Games uploads playlist, so it automatically shows
-      the newest video every time one is posted — nobody has to touch this page.
+      This player is wired to the Meko Games uploads playlist, so it always shows the newest
+      devlogs and gameplay videos first — nobody has to touch this page. Use the playlist panel
+      to browse recent uploads from the channel.
     </p>
     <div class="video-frame">
       <iframe id="latest-video-frame"
@@ -397,19 +355,6 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
         allowfullscreen>
       </iframe>
     </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">What's new</p>
-        <h2>Recent updates</h2>
-      </div>
-      <a class="btn btn-ghost" href="updates.html">All updates →</a>
-    </div>
-    <div id="updates-list-preview" class="entry-list"></div>
   </div>
 </section>
 
@@ -429,9 +374,9 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
     </div>
     <div class="card">
       <div class="icon">03</div>
-      <h3>Follow</h3>
-      <p class="muted">Read patch notes and behind-the-scenes posts as they happen.</p>
-      <a class="btn btn-ghost" style="margin-top:14px;" href="blog.html">Read the Blog</a>
+      <h3>Watch devlogs</h3>
+      <p class="muted">Every devlog and behind-the-scenes video is posted straight to the channel.</p>
+      <a class="btn btn-ghost" style="margin-top:14px;" data-youtube-link href="#" target="_blank" rel="noopener">Watch on YouTube</a>
     </div>
   </div>
 </section>
@@ -443,8 +388,6 @@ footer .copyright{ color: var(--text-muted); font-size:.82rem; margin-top: 40px;
         <h4>Site</h4>
         <a href="index.html">Home</a>
         <a href="game.html">The Game</a>
-        <a href="updates.html">Updates</a>
-        <a href="blog.html">Blog</a>
       </div>
       <div>
         <h4>Follow</h4>
@@ -506,17 +449,7 @@ SITE_CONFIG.uploadsPlaylistId = "UU" + SITE_CONFIG.youtubeChannelId.slice(2);
    ===================================================================== */
 
 const UPDATES = [
-   {
-    date: "August 21, 2026",
-    title: "Meaks VR fyh hub is live",
-    tag: "Announcement",
-    description:
-      "This is the new home for Meaks VR patch notes, devlogs, and release news. " +
-      "Bookmark this page — every future update, big or small, will be posted here first.",
-    link: "",
-    linkLabel: "",
-   },
-   {
+  {
     date: "August 21, 2026",
     title: "Meaks VR update hub is live",
     tag: "Announcement",
@@ -565,20 +498,6 @@ const UPDATES = [
    ===================================================================== */
 
 const BLOG_POSTS = [
-   {
-    date: "August 21, 2026",
-    title: "Welcome to the Meko Games blog67",
-    author: "Meko Games",
-    tags: ["News"],
-    image: "",
-    content:
-      "my darkness" +
-      "share behind-the-scenes progress on <strong>Meaks VR</strong>, design decisions, " +
-      "and whatever else is on our minds while we build.</p>" +
-      "<p>To keep up with everything else, check the <a href='updates.html'>Updates page</a> " +
-      "for patch notes, subscribe on <a href='https://www.youtube.com/@mekogamesVR'>YouTube</a>, " +
-      "or come hang out on <a href='https://discord.gg/hjnYwJ8car'>Discord</a>.</p>",
-  },
   {
     date: "August 21, 2026",
     title: "Welcome to the Meko Games blog",
@@ -595,6 +514,7 @@ const BLOG_POSTS = [
   },
 ];
 
+</script>
 <script>
 /* =====================================================================
    RENDERING LOGIC — turns js/updates-data.js and js/blog-data.js into
